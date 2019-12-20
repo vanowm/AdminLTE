@@ -25,7 +25,7 @@
                                     <input type="radio"> Secs
                                 </label>
                                 <label id="btnMins" class="btn btn-default active">
-                                    <input type="radio"> Mins
+                                    <input type="radio" checked> Mins
                                 </label>
                             </div>
                     </div>
