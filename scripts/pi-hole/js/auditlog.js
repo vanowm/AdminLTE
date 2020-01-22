@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global escapeHtml:false */
+/* global utils:false */
 
 // Define global variables
 var auditList = [],
@@ -30,7 +30,7 @@ function updateTopLists() {
     for (domain in data.top_queries) {
       if (Object.prototype.hasOwnProperty.call(data.top_queries, domain)) {
         // Sanitize domain
-        domain = escapeHtml(domain);
+        domain = utils.escapeHtml(domain);
         url = '<a href="queries.php?domain=' + domain + '">' + domain + "</a>";
         domaintable.append(
           "<tr> <td>" +
@@ -46,7 +46,7 @@ function updateTopLists() {
       if (Object.prototype.hasOwnProperty.call(data.top_ads, domain)) {
         var input = domain.split(" ");
         // Sanitize domain
-        var printdomain = escapeHtml(input[0]);
+        var printdomain = utils.escapeHtml(input[0]);
         if (input.length > 1) {
           url =
             '<a href="queries.php?domain=' +

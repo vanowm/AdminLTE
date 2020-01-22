@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global httpGet:false, quietfilter:false */
+/* global utils:false */
 
 var exact = "";
 
@@ -28,7 +28,7 @@ function eventsource() {
 
   // IE does not support EventSource - load whole content at once
   if (typeof EventSource !== "function") {
-    httpGet(
+    utils.httpGet(
       ta,
       "scripts/pi-hole/php/queryads.php?domain=" + domain.toLowerCase() + exact + "&IE",
       quiet
@@ -50,7 +50,7 @@ function eventsource() {
       if (!quiet) {
         ta.append(e.data);
       } else {
-        quietfilter(ta, e.data);
+        utils.quietfilter(ta, e.data);
       }
     },
     false

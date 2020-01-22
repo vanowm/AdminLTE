@@ -21,7 +21,7 @@ function quietfilter(ta, data) {
 }
 
 // Credit: https://stackoverflow.com/questions/1787322/htmlspecialchars-equivalent-in-javascript/4835406#4835406
-window.escapeHtml = function(text) {
+function escapeHtml(text) {
   var map = {
     "&": "&amp;",
     "<": "&lt;",
@@ -33,10 +33,10 @@ window.escapeHtml = function(text) {
   return text.replace(/[&<>"']/g, function(m) {
     return map[m];
   });
-};
+}
 
 // Credit: https://stackoverflow.com/a/10642418/2087442
-window.httpGet = function(ta, theUrl, quiet) {
+function httpGet(ta, theUrl, quiet) {
   var xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onreadystatechange = function() {
@@ -53,14 +53,14 @@ window.httpGet = function(ta, theUrl, quiet) {
 
   xmlhttp.open("GET", theUrl, false);
   xmlhttp.send();
-};
+}
 
-window.padNumber = function(num) {
+function padNumber(num) {
   return ("00" + num).substr(-2, 2);
-};
+}
 
 // Helper function needed for converting the Objects to Arrays
-window.objectToArray = function(p) {
+function objectToArray(p) {
   var keys = Object.keys(p);
   keys.sort(function(a, b) {
     return a - b;
@@ -74,9 +74,9 @@ window.objectToArray = function(p) {
   }
 
   return [idx, arr];
-};
+}
 
-window.showAlert = function(type, icon, title, message) {
+function showAlert(type, icon, title, message) {
   var opts = {};
   title = "&nbsp;<strong>" + title + "</strong><br>";
   switch (type) {
@@ -133,4 +133,15 @@ window.showAlert = function(type, icon, title, message) {
       break;
     default:
   }
-};
+}
+
+window.utils = (function() {
+  return {
+    escapeHtml: escapeHtml,
+    httpGet: httpGet,
+    showAlert: showAlert,
+    quietfilter: quietfilter,
+    objectToArray: objectToArray,
+    padNumber: padNumber
+  };
+})();

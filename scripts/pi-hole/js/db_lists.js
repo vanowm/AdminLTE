@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global moment:false, escapeHtml:false */
+/* global moment:false, utils:false */
 
 var start__ = moment().subtract(6, "days");
 var from =
@@ -91,10 +91,10 @@ function updateTopClientsChart() {
     for (client in data.top_sources) {
       if (Object.prototype.hasOwnProperty.call(data.top_sources, client)) {
         // Sanitize client
-        client = escapeHtml(client);
-        if (escapeHtml(client) !== client) {
+        client = utils.escapeHtml(client);
+        if (utils.escapeHtml(client) !== client) {
           // Make a copy with the escaped index if necessary
-          data.top_sources[escapeHtml(client)] = data.top_sources[client];
+          data.top_sources[utils.escapeHtml(client)] = data.top_sources[client];
         }
 
         if (client.indexOf("|") > -1) {
@@ -147,10 +147,10 @@ function updateTopDomainsChart() {
     for (domain in data.top_domains) {
       if (Object.prototype.hasOwnProperty.call(data.top_domains, domain)) {
         // Sanitize domain
-        domain = escapeHtml(domain);
-        if (escapeHtml(domain) !== domain) {
+        domain = utils.escapeHtml(domain);
+        if (utils.escapeHtml(domain) !== domain) {
           // Make a copy with the escaped index if necessary
-          data.top_domains[escapeHtml(domain)] = data.top_domains[domain];
+          data.top_domains[utils.escapeHtml(domain)] = data.top_domains[domain];
         }
 
         percentage = (data.top_domains[domain] / sum) * 100.0;
@@ -196,10 +196,10 @@ function updateTopAdsChart() {
     for (ad in data.top_ads) {
       if (Object.prototype.hasOwnProperty.call(data.top_ads, ad)) {
         // Sanitize ad
-        ad = escapeHtml(ad);
-        if (escapeHtml(ad) !== ad) {
+        ad = utils.escapeHtml(ad);
+        if (utils.escapeHtml(ad) !== ad) {
           // Make a copy with the escaped index if necessary
-          data.top_ads[escapeHtml(ad)] = data.top_ads[ad];
+          data.top_ads[utils.escapeHtml(ad)] = data.top_ads[ad];
         }
 
         percentage = (data.top_ads[ad] / sum) * 100.0;

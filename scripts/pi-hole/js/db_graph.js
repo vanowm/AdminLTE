@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global Chart:false, moment:false, objectToArray:false, padNumber:false */
+/* global Chart:false, moment:false, utils:false */
 
 var start__ = moment().subtract(6, "days");
 var from =
@@ -108,8 +108,8 @@ function updateQueriesOverTime() {
     "api_db.php?getGraphData&from=" + from + "&until=" + until + "&interval=" + interval,
     function(data) {
       // convert received objects to arrays
-      data.domains_over_time = objectToArray(data.domains_over_time);
-      data.ads_over_time = objectToArray(data.ads_over_time);
+      data.domains_over_time = utils.objectToArray(data.domains_over_time);
+      data.ads_over_time = utils.objectToArray(data.ads_over_time);
       // Remove possibly already existing data
       timeLineChart.data.labels = [];
       timeLineChart.data.datasets[0].data = [];
@@ -208,28 +208,28 @@ $(document).ready(function() {
             var from_date =
               time.getFullYear() +
               "-" +
-              padNumber(time.getMonth() + 1) +
+              utils.padNumber(time.getMonth() + 1) +
               "-" +
-              padNumber(time.getDate()) +
+              utils.padNumber(time.getDate()) +
               " " +
-              padNumber(time.getHours()) +
+              utils.padNumber(time.getHours()) +
               ":" +
-              padNumber(time.getMinutes()) +
+              utils.padNumber(time.getMinutes()) +
               ":" +
-              padNumber(time.getSeconds());
+              utils.padNumber(time.getSeconds());
             time = new Date(time.valueOf() + 1000 * interval);
             var until_date =
               time.getFullYear() +
               "-" +
-              padNumber(time.getMonth() + 1) +
+              utils.padNumber(time.getMonth() + 1) +
               "-" +
-              padNumber(time.getDate()) +
+              utils.padNumber(time.getDate()) +
               " " +
-              padNumber(time.getHours()) +
+              utils.padNumber(time.getHours()) +
               ":" +
-              padNumber(time.getMinutes()) +
+              utils.padNumber(time.getMinutes()) +
               ":" +
-              padNumber(time.getSeconds());
+              utils.padNumber(time.getSeconds());
             return "Queries from " + from_date + " to " + until_date;
           },
           label: function(tooltipItems, data) {

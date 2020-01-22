@@ -6,7 +6,7 @@
  *  Please see LICENSE file for your rights under this license. */
 
 // Define global variables
-/* global Chart:false, objectToArray: false, escapeHtml:false, padNumber:false, updateSessionTimer:false */
+/* global Chart:false, utils: false, updateSessionTimer:false */
 var timeLineChart, clientsChart;
 var queryTypePieChart, forwardDestinationPieChart;
 var lastTooltipTime = 0;
@@ -112,8 +112,8 @@ function updateQueriesOverTime() {
     }
 
     // convert received objects to arrays
-    data.domains_over_time = objectToArray(data.domains_over_time);
-    data.ads_over_time = objectToArray(data.ads_over_time);
+    data.domains_over_time = utils.objectToArray(data.domains_over_time);
+    data.ads_over_time = utils.objectToArray(data.ads_over_time);
     // remove last data point since it not representative
     data.ads_over_time[0].splice(-1, 1);
     // Remove possibly already existing data
@@ -241,7 +241,7 @@ function updateClientsOverTime() {
     }
 
     // convert received objects to arrays
-    data.over_time = objectToArray(data.over_time);
+    data.over_time = utils.objectToArray(data.over_time);
 
     // remove last data point since it not representative
     data.over_time[0].splice(-1, 1);
@@ -424,12 +424,12 @@ function updateTopClientsChart() {
     for (client in data.top_sources) {
       if (Object.prototype.hasOwnProperty.call(data.top_sources, client)) {
         // Sanitize client
-        if (escapeHtml(client) !== client) {
+        if (utils.escapeHtml(client) !== client) {
           // Make a copy with the escaped index if necessary
-          data.top_sources[escapeHtml(client)] = data.top_sources[client];
+          data.top_sources[utils.escapeHtml(client)] = data.top_sources[client];
         }
 
-        client = escapeHtml(client);
+        client = utils.escapeHtml(client);
         if (client.indexOf("|") > -1) {
           idx = client.indexOf("|");
           clientname = client.substr(0, idx);
@@ -472,12 +472,12 @@ function updateTopClientsChart() {
     for (client in data.top_sources_blocked) {
       if (Object.prototype.hasOwnProperty.call(data.top_sources_blocked, client)) {
         // Sanitize client
-        if (escapeHtml(client) !== client) {
+        if (utils.escapeHtml(client) !== client) {
           // Make a copy with the escaped index if necessary
-          data.top_sources_blocked[escapeHtml(client)] = data.top_sources_blocked[client];
+          data.top_sources_blocked[utils.escapeHtml(client)] = data.top_sources_blocked[client];
         }
 
-        client = escapeHtml(client);
+        client = utils.escapeHtml(client);
         if (client.indexOf("|") > -1) {
           idx = client.indexOf("|");
           clientname = client.substr(0, idx);
@@ -552,12 +552,12 @@ function updateTopLists() {
     for (domain in data.top_queries) {
       if (Object.prototype.hasOwnProperty.call(data.top_queries, domain)) {
         // Sanitize domain
-        if (escapeHtml(domain) !== domain) {
+        if (utils.escapeHtml(domain) !== domain) {
           // Make a copy with the escaped index if necessary
-          data.top_queries[escapeHtml(domain)] = data.top_queries[domain];
+          data.top_queries[utils.escapeHtml(domain)] = data.top_queries[domain];
         }
 
-        domain = escapeHtml(domain);
+        domain = utils.escapeHtml(domain);
         url = '<a href="queries.php?domain=' + domain + '">' + domain + "</a>";
         percentage = (data.top_queries[domain] / data.dns_queries_today) * 100;
         domaintable.append(
@@ -586,12 +586,12 @@ function updateTopLists() {
     for (domain in data.top_ads) {
       if (Object.prototype.hasOwnProperty.call(data.top_ads, domain)) {
         // Sanitize domain
-        if (escapeHtml(domain) !== domain) {
+        if (utils.escapeHtml(domain) !== domain) {
           // Make a copy with the escaped index if necessary
-          data.top_ads[escapeHtml(domain)] = data.top_ads[domain];
+          data.top_ads[utils.escapeHtml(domain)] = data.top_ads[domain];
         }
 
-        domain = escapeHtml(domain);
+        domain = utils.escapeHtml(domain);
         url = '<a href="queries.php?domain=' + domain + '">' + domain + "</a>";
         percentage = (data.top_ads[domain] / data.ads_blocked_today) * 100;
         adtable.append(
@@ -747,8 +747,8 @@ $(document).ready(function() {
             var time = label.match(/(\d?\d):?(\d?\d?)/);
             var h = parseInt(time[1], 10);
             var m = parseInt(time[2], 10) || 0;
-            var from = padNumber(h) + ":" + padNumber(m - 5) + ":00";
-            var to = padNumber(h) + ":" + padNumber(m + 4) + ":59";
+            var from = utils.padNumber(h) + ":" + utils.padNumber(m - 5) + ":00";
+            var to = utils.padNumber(h) + ":" + utils.padNumber(m + 4) + ":59";
             return "Upstreams from " + from + " to " + to;
           },
           label: function(tooltipItems, data) {
@@ -832,8 +832,8 @@ $(document).ready(function() {
               var time = label.match(/(\d?\d):?(\d?\d?)/);
               var h = parseInt(time[1], 10);
               var m = parseInt(time[2], 10) || 0;
-              var from = padNumber(h) + ":" + padNumber(m - 5) + ":00";
-              var to = padNumber(h) + ":" + padNumber(m + 4) + ":59";
+              var from = utils.padNumber(h) + ":" + utils.padNumber(m - 5) + ":00";
+              var to = utils.padNumber(h) + ":" + utils.padNumber(m + 4) + ":59";
               return "Client activity from " + from + " to " + to;
             },
             label: function(tooltipItems, data) {

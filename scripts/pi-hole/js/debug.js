@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global httpGet:false */
+/* global utils:false */
 
 function eventsource() {
   var ta = $("#output");
@@ -19,7 +19,7 @@ function eventsource() {
 
   // IE does not support EventSource - load whole content at once
   if (typeof EventSource !== "function") {
-    httpGet(ta, "scripts/pi-hole/php/debug.php?IE&token=" + token + "&" + checked);
+    utils.httpGet(ta, "scripts/pi-hole/php/debug.php?IE&token=" + token + "&" + checked);
     return;
   }
 

@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global moment:false, showAlert:false */
+/* global moment:false, utils:false */
 
 var table;
 var token = $("#token").text();
@@ -131,10 +131,10 @@ function addGroup() {
   var name = $("#new_name").val();
   var desc = $("#new_desc").val();
 
-  showAlert("info", "", "Adding group...", name);
+  utils.showAlert("info", "", "Adding group...", name);
 
   if (name.length === 0) {
-    showAlert("warning", "", "Warning", "Please specify a group name");
+    utils.showAlert("warning", "", "Warning", "Please specify a group name");
     return;
   }
 
@@ -145,16 +145,16 @@ function addGroup() {
     data: { action: "add_group", name: name, desc: desc, token: token },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-plus", "Successfully added group", name);
+        utils.showAlert("success", "glyphicon glyphicon-plus", "Successfully added group", name);
         $("#new_name").val("");
         $("#new_desc").val("");
         table.ajax.reload();
       } else {
-        showAlert("error", "", "Error while adding new group", response.message);
+        utils.showAlert("error", "", "Error while adding new group", response.message);
       }
     },
     error: function(jqXHR, exception) {
-      showAlert("error", "", "Error while adding new group", jqXHR.responseText);
+      utils.showAlert("error", "", "Error while adding new group", jqXHR.responseText);
       console.log(exception);
     }
   });
@@ -184,7 +184,7 @@ function editGroup() {
     not_done = "editing description of";
   }
 
-  showAlert("info", "", "Editing group...", name);
+  utils.showAlert("info", "", "Editing group...", name);
   $.ajax({
     url: "scripts/pi-hole/php/groups.php",
     method: "post",
@@ -199,9 +199,14 @@ function editGroup() {
     },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-pencil", "Successfully " + done + " group", name);
+        utils.showAlert(
+          "success",
+          "glyphicon glyphicon-pencil",
+          "Successfully " + done + " group",
+          name
+        );
       } else {
-        showAlert(
+        utils.showAlert(
           "error",
           "",
           "Error while " + not_done + " group with ID " + id,
@@ -210,7 +215,7 @@ function editGroup() {
       }
     },
     error: function(jqXHR, exception) {
-      showAlert(
+      utils.showAlert(
         "error",
         "",
         "Error while " + not_done + " group with ID " + id,
@@ -226,7 +231,7 @@ function deleteGroup() {
   var tr = $(this).closest("tr");
   var name = tr.find("#name").val();
 
-  showAlert("info", "", "Deleting group...", name);
+  utils.showAlert("info", "", "Deleting group...", name);
   $.ajax({
     url: "scripts/pi-hole/php/groups.php",
     method: "post",
@@ -234,17 +239,22 @@ function deleteGroup() {
     data: { action: "delete_group", id: id, token: token },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-trash", "Successfully deleted group ", name);
+        utils.showAlert(
+          "success",
+          "glyphicon glyphicon-trash",
+          "Successfully deleted group ",
+          name
+        );
         table
           .row(tr)
           .remove()
           .draw(false);
       } else {
-        showAlert("error", "", "Error while deleting group with ID " + id, response.message);
+        utils.showAlert("error", "", "Error while deleting group with ID " + id, response.message);
       }
     },
     error: function(jqXHR, exception) {
-      showAlert("error", "", "Error while deleting group with ID " + id, jqXHR.responseText);
+      utils.showAlert("error", "", "Error while deleting group with ID " + id, jqXHR.responseText);
       console.log(exception);
     }
   });

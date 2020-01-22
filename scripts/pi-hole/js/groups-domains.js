@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global moment:false, showAlert:false */
+/* global moment:false, utils:false */
 
 var table;
 var groups = [];
@@ -188,10 +188,10 @@ function addDomain() {
   var type = $("#new_type").val();
   var comment = $("#new_comment").val();
 
-  showAlert("info", "", "Adding domain...", domain);
+  utils.showAlert("info", "", "Adding domain...", domain);
 
   if (domain.length === 0) {
-    showAlert("warning", "", "Warning", "Please specify a domain");
+    utils.showAlert("warning", "", "Warning", "Please specify a domain");
     return;
   }
 
@@ -208,14 +208,14 @@ function addDomain() {
     },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-plus", "Successfully added domain", domain);
+        utils.showAlert("success", "glyphicon glyphicon-plus", "Successfully added domain", domain);
         $("#new_domain").val("");
         $("#new_comment").val("");
         table.ajax.reload();
-      } else showAlert("error", "", "Error while adding new domain", response.message);
+      } else utils.showAlert("error", "", "Error while adding new domain", response.message);
     },
     error: function(jqXHR, exception) {
-      showAlert("error", "", "Error while adding new domain", jqXHR.responseText);
+      utils.showAlert("error", "", "Error while adding new domain", jqXHR.responseText);
       console.log(exception);
     }
   });
@@ -253,7 +253,7 @@ function editDomain() {
     not_done = "editing groups of";
   }
 
-  showAlert("info", "", "Editing domain...", name);
+  utils.showAlert("info", "", "Editing domain...", name);
   $.ajax({
     url: "scripts/pi-hole/php/groups.php",
     method: "post",
@@ -269,14 +269,14 @@ function editDomain() {
     },
     success: function(response) {
       if (response.success) {
-        showAlert(
+        utils.showAlert(
           "success",
           "glyphicon glyphicon-pencil",
           "Successfully " + done + " domain",
           domain
         );
       } else
-        showAlert(
+        utils.showAlert(
           "error",
           "",
           "Error while " + not_done + " domain with ID " + id,
@@ -284,7 +284,7 @@ function editDomain() {
         );
     },
     error: function(jqXHR, exception) {
-      showAlert(
+      utils.showAlert(
         "error",
         "",
         "Error while " + not_done + " domain with ID " + id,
@@ -300,7 +300,7 @@ function deleteDomain() {
   var tr = $(this).closest("tr");
   var domain = tr.find("#domain").text();
 
-  showAlert("info", "", "Deleting domain...", domain);
+  utils.showAlert("info", "", "Deleting domain...", domain);
   $.ajax({
     url: "scripts/pi-hole/php/groups.php",
     method: "post",
@@ -308,15 +308,21 @@ function deleteDomain() {
     data: { action: "delete_domain", id: id, token: token },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-trash", "Successfully deleted domain", domain);
+        utils.showAlert(
+          "success",
+          "glyphicon glyphicon-trash",
+          "Successfully deleted domain",
+          domain
+        );
         table
           .row(tr)
           .remove()
           .draw(false);
-      } else showAlert("error", "", "Error while deleting domain with ID " + id, response.message);
+      } else
+        utils.showAlert("error", "", "Error while deleting domain with ID " + id, response.message);
     },
     error: function(jqXHR, exception) {
-      showAlert("error", "", "Error while deleting domain with ID " + id, jqXHR.responseText);
+      utils.showAlert("error", "", "Error while deleting domain with ID " + id, jqXHR.responseText);
       console.log(exception);
     }
   });

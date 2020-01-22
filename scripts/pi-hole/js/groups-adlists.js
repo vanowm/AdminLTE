@@ -5,7 +5,7 @@
  *  This file is copyright under the latest version of the EUPL.
  *  Please see LICENSE file for your rights under this license. */
 
-/* global moment:false, showAlert:false */
+/* global moment:false, utils:false */
 
 var table;
 var groups = [];
@@ -170,10 +170,10 @@ function addAdlist() {
   var address = $("#new_address").val();
   var comment = $("#new_comment").val();
 
-  showAlert("info", "", "Adding adlist...", address);
+  utils.showAlert("info", "", "Adding adlist...", address);
 
   if (address.length === 0) {
-    showAlert("warning", "", "Warning", "Please specify an adlist address");
+    utils.showAlert("warning", "", "Warning", "Please specify an adlist address");
     return;
   }
 
@@ -189,16 +189,21 @@ function addAdlist() {
     },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-plus", "Successfully added adlist", address);
+        utils.showAlert(
+          "success",
+          "glyphicon glyphicon-plus",
+          "Successfully added adlist",
+          address
+        );
         $("#new_address").val("");
         $("#new_comment").val("");
         table.ajax.reload();
       } else {
-        showAlert("error", "", "Error while adding new adlist: ", response.message);
+        utils.showAlert("error", "", "Error while adding new adlist: ", response.message);
       }
     },
     error: function(jqXHR, exception) {
-      showAlert("error", "", "Error while adding new adlist: ", jqXHR.responseText);
+      utils.showAlert("error", "", "Error while adding new adlist: ", jqXHR.responseText);
       console.log(exception);
     }
   });
@@ -229,7 +234,7 @@ function editAdlist() {
     not_done = "editing groups of";
   }
 
-  showAlert("info", "", "Editing adlist...", address);
+  utils.showAlert("info", "", "Editing adlist...", address);
 
   $.ajax({
     url: "scripts/pi-hole/php/groups.php",
@@ -245,14 +250,14 @@ function editAdlist() {
     },
     success: function(response) {
       if (response.success) {
-        showAlert(
+        utils.showAlert(
           "success",
           "glyphicon glyphicon-pencil",
           "Successfully " + done + " adlist ",
           address
         );
       } else {
-        showAlert(
+        utils.showAlert(
           "error",
           "",
           "Error while " + not_done + " adlist with ID " + id,
@@ -261,7 +266,7 @@ function editAdlist() {
       }
     },
     error: function(jqXHR, exception) {
-      showAlert(
+      utils.showAlert(
         "error",
         "",
         "Error while " + not_done + " adlist with ID " + id,
@@ -277,7 +282,7 @@ function deleteAdlist() {
   var tr = $(this).closest("tr");
   var address = tr.find("#address").text();
 
-  showAlert("info", "", "Deleting adlist...", address);
+  utils.showAlert("info", "", "Deleting adlist...", address);
   $.ajax({
     url: "scripts/pi-hole/php/groups.php",
     method: "post",
@@ -285,15 +290,21 @@ function deleteAdlist() {
     data: { action: "delete_adlist", id: id, token: token },
     success: function(response) {
       if (response.success) {
-        showAlert("success", "glyphicon glyphicon-trash", "Successfully deleted adlist ", address);
+        utils.showAlert(
+          "success",
+          "glyphicon glyphicon-trash",
+          "Successfully deleted adlist ",
+          address
+        );
         table
           .row(tr)
           .remove()
           .draw(false);
-      } else showAlert("error", "", "Error while deleting adlist with ID " + id, response.message);
+      } else
+        utils.showAlert("error", "", "Error while deleting adlist with ID " + id, response.message);
     },
     error: function(jqXHR, exception) {
-      showAlert("error", "", "Error while deleting adlist with ID " + id, jqXHR.responseText);
+      utils.showAlert("error", "", "Error while deleting adlist with ID " + id, jqXHR.responseText);
       console.log(exception);
     }
   });
