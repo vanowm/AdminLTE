@@ -175,7 +175,7 @@ function initTable() {
           }
 
           selectEl.append(
-            $("<option />")
+            $("<option></option>")
               .val(groups[i].id)
               .text(groups[i].name + extra)
           );
@@ -186,7 +186,7 @@ function initTable() {
         // Initialize multiselect
         selectEl.multiselect({
           includeSelectAllOption: true,
-          buttonContainer: '<div id="container_' + data.id + '" class="btn-group"/>',
+          buttonContainer: '<div id="container_' + data.id + '" class="btn-group"></div>',
           maxHeight: 200,
           onDropdownShown: function () {
             var el = $("#container_" + data.id);

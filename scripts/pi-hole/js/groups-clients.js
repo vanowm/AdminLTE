@@ -29,10 +29,10 @@ function reload_client_suggestions() {
           text += " (" + data[key] + ")";
         }
 
-        sel.append($("<option />").val(key).text(text));
+        sel.append($("<option></option>").val(key).text(text));
       }
 
-      sel.append($("<option />").val("custom").text("Custom, specified below..."));
+      sel.append($("<option></option>").val("custom").text("Custom, specified below..."));
       if (customWasSelected) {
         sel.val("custom");
       }
@@ -140,7 +140,7 @@ function initTable() {
         }
 
         selectEl.append(
-          $("<option />")
+          $("<option></option>")
             .val(groups[i].id)
             .text(groups[i].name + extra)
         );
@@ -151,7 +151,7 @@ function initTable() {
       // Initialize multiselect
       selectEl.multiselect({
         includeSelectAllOption: true,
-        buttonContainer: '<div id="container_' + data.id + '" class="btn-group"/>',
+        buttonContainer: '<div id="container_' + data.id + '" class="btn-group"></div>',
         maxHeight: 200,
         onDropdownShown: function () {
           var el = $("#container_" + data.id);

@@ -534,7 +534,7 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "blocklists"
                                                     <tbody>
                                                         <?php foreach ($dhcp_leases as $lease) { ?>
                                                         <tr data-placement="auto" data-container="body" data-toggle="tooltip"
-                                                            title="Lease type: IPv<?php echo $lease["type"]; ?><br/>Remaining lease time: <?php echo $lease["TIME"]; ?><br/>DHCP UID: <?php echo $lease["clid"]; ?>">
+                                                            title="Lease type: IPv<?php echo $lease["type"]; ?><br>Remaining lease time: <?php echo $lease["TIME"]; ?><br>DHCP UID: <?php echo $lease["clid"]; ?>">
                                                             <td id="MAC"><?php echo $lease["hwaddr"]; ?></td>
                                                             <td id="IP" data-order="<?php echo bin2hex(inet_pton($lease["IP"])); ?>"><?php echo $lease["IP"]; ?></td>
                                                             <td id="HOST"><?php echo $lease["host"]; ?></td>
@@ -1277,7 +1277,7 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "blocklists"
                         <div class="col-md-12">
                             <div class="box box-warning">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Danger Zone!</h3><br/>
+                                    <h3 class="box-title">Danger Zone!</h3><br>
                                 </div>
                                 <div class="box-body">
                                     <div class="row">
@@ -1302,7 +1302,7 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "blocklists"
                                             <button type="button" class="btn btn-warning confirm-restartdns form-control">Restart DNS resolver</button>
                                         </div>
                                     </div>
-                                    <br/>
+                                    <br>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <button type="button" class="btn btn-danger confirm-flushlogs form-control">Flush logs</button>

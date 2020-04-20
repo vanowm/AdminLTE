@@ -121,7 +121,7 @@ $(document).ready(function () {
 
       // MAC + Vendor field if available
       if (data.macVendor && data.macVendor.length > 0) {
-        $("td:eq(1)", row).html(data.hwaddr + "<br/>" + data.macVendor);
+        $("td:eq(1)", row).html(data.hwaddr + "<br>" + data.macVendor);
       }
 
       // Hide mock MAC addresses

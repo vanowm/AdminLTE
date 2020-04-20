@@ -385,7 +385,7 @@ if($auth) {
                             echo '<a id=\"temperature\"><i class="fa fa-circle text-red"></i> FTL offline</a>';
                         }
                     ?>
-                    <br/>
+                    <br>
                     <?php
                     echo "<a title=\"Detected $nproc cores\"><i class=\"fa fa-circle ";
                         if ($loaddata[0] > $nproc) {
@@ -397,7 +397,7 @@ if($auth) {
                         }
                         echo "\"></i> Load:&nbsp;&nbsp;" . $loaddata[0] . "&nbsp;&nbsp;" . $loaddata[1] . "&nbsp;&nbsp;". $loaddata[2] . "</a>";
                     ?>
-                    <br/>
+                    <br>
                     <?php
                     echo "<a><i class=\"fa fa-circle ";
                         if ($memory_usage > 0.75 || $memory_usage < 0.0) {
