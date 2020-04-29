@@ -15,6 +15,11 @@ $token = $_SESSION['token'];
 ?>
 <!-- Send PHP info to JS -->
 <div id="token" hidden><?php echo $token ?></div>
+<!-- Sourceing CSS colors from stylesheet to be used in JS code -->
+<span class="queries-permitted"></span>
+<span class="queries-blocked"></span>
+<span class="graphs-grid"></span>
+<span class="graphs-ticks"></span>
 
 <div class="row">
     <div class="col-md-12">
@@ -53,11 +58,11 @@ $token = $_SESSION['token'];
             <label>Background color: Last query from this device seen ...</label>
         <table width="100%">
           <tr class="text-center">
-            <td style="background: #e7ffde;" width="15%">just now</td>
-            <td style="background-image: linear-gradient(to right, #e7ffde 0%, #ffffdf 100%)" width="30%"><center>... to ...</center></td>
-            <td style="background: #ffffdf;" width="15%">24 hours ago</td>
-            <td style="background: #ffedd9;" width="20%">&gt; 24 hours ago</td>
-            <td style="background: #ffbfaa;" width="20%">Device does not use Pi-hole</td>
+            <td class="network-recent" width="15%">just now</td>
+            <td class="network-gradient" width="30%"><center>... to ...</center></td>
+            <td class="network-old" width="15%">24 hours ago</td>
+            <td class="network-older" width="20%">&gt; 24 hours ago</td>
+            <td class="network-never" width="20%">Device does not use Pi-hole</td>
           </tr>
         </table>
         </div>

@@ -268,7 +268,7 @@ $(document).ready(function() {
           buttontext = "";
       }
 
-      if(colorClass !== false) {
+      if (colorClass !== false) {
         $("td:eq(4)", row).addClass(colorClass);
       }
       $("td:eq(4)", row).html(fieldtext);
