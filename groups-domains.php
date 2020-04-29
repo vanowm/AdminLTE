@@ -48,7 +48,7 @@
                                             <input id="new_domain" type="text" class="form-control active" placeholder="Domain to be added">
                                             <span class="input-group-addon">
                                                 <input type="checkbox" id="wildcard_checkbox">
-                                                wildcard</span>
+                                                <label for="wildcard_checkbox">wildcard</label></span>
                                             </span>
                                         </div>
                                     </div>
