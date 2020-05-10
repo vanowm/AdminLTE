@@ -275,3 +275,7 @@ code.breakall {
 .input-group-addon {
 	padding: 0 12px;
 }
+
+.hidden {
+    display: none !important;
+}
