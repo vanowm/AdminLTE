@@ -264,7 +264,7 @@ if($auth) {
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li>
-                        <p class="navbar-text text-white">
+                        <p class="navbar-text>
                             <span class="hidden-xs hidden-sm">hostname:</span>
                             <code><?php echo gethostname(); ?></code>
                         </p>
