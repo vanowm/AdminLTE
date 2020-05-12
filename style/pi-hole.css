@@ -47,6 +47,11 @@
 	background: #ddd;
 }
 
+.skin-blue .main-header .navbar .nav > li > a,
+.skin-blue .main-header .navbar .nav > li > p {
+    color: #fff;
+}
+
 @-webkit-keyframes Pulse{
 	from {color:#630030;-webkit-text-shadow:0 0 2px transparent;}
 	50% {color:#e33100;-webkit-text-shadow:0 0 5px #e33100;}
@@ -291,10 +296,6 @@
 
 .text-vivid-blue {
     color: #36f !important;
-}
-
-.text-white {
-    color: #fff !important;
 }
 
 td.highlight {
