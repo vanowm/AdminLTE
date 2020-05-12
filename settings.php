@@ -1214,7 +1214,7 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "blocklists"
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Pi-hole IPv6 address:</th>
-                                                    <td><?php echo htmlentities($piHoleIPv6); ?></td>
+                                                    <td class="breakall"><?php echo htmlentities($piHoleIPv6); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Pi-hole hostname:</th>
