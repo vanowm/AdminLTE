@@ -297,7 +297,7 @@ td.highlight {
     background-color: #ff0 !important;
 }
 
-code.breakall {
+.breakall {
     white-space: -moz-pre-wrap;
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
