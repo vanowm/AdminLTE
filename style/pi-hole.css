@@ -293,6 +293,10 @@
     color: #36f !important;
 }
 
+.text-white {
+    color: #fff !important;
+}
+
 td.highlight {
     background-color: #ff0 !important;
 }
