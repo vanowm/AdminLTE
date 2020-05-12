@@ -254,28 +254,35 @@
     text-decoration: underline;
 }
 
-code.breakall {
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word; /* Internet Explorer 5.5+ */
+.text-black {
+    color: #000 !important;
 }
 
-.pointer {
-    cursor: pointer;
+.text-green-light {
+    color: #7fff00 !important;
 }
 
-.bootstrap-select.bs-container.align-right {
-    left: unset !important;
-    right: 10px;
+.text-green {
+    color: #080 !important;
 }
 
-.input-group-addon {
-	padding: 0 12px;
+.text-orange {
+    color: #ffa500 !important;
 }
 
-.hidden {
+.text-red {
+    color: #f00 !important;
+}
+
+.text-vivid-blue {
+    color: #36f !important;
+}
+
+.d-none {
     display: none !important;
 }
+
+td.highlight {
+    background-color: #ff0 !important;
+}
+
