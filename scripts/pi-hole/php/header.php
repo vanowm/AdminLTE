@@ -230,6 +230,11 @@
     <script src="scripts/vendor/moment.min.js"></script>
 <?php } ?>
 
+<?php if(in_array($scriptname, array("settings.php", "queries.php", "db_queries.php", "network.php"))){ ?>
+    <script src="scripts/vendor/moment.min.js"></script>
+    <script src="scripts/vendor/moment-timezone-with-data.min.js"></script>
+<?php } ?>
+
     <script src="scripts/vendor/jquery.dataTables.min.js"></script>
     <script src="scripts/vendor/dataTables.bootstrap.min.js"></script>
     <script src="scripts/vendor/Chart.bundle.min.js"></script>

@@ -196,3 +196,22 @@ $(function() {
     $("#cookieInfo").show();
   }
 });
+
+// Timezone per browser
+var timeZone = localStorage.getItem("timeZone") || "";
+
+!function()
+{
+	if (typeof moment == "undefined" || !moment.tz)
+		return;
+
+	let _unix = moment.unix;
+	//a hack that hijacks moment.unix() function
+	moment.unix = function(f)
+	{
+		let t = _unix.apply(_unix, arguments),
+				r = t.tz(timeZone);
+
+		return r || t;
+	}
+}();

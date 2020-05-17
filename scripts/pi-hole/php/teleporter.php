@@ -452,7 +452,7 @@ if(isset($_POST["action"]))
 }
 else
 {
-	$tarname = "pi-hole-teleporter_".date("Y-m-d_h-i-s").".tar";
+	$tarname = "pi-hole-teleporter_".date("Y-m-d_H-i-s").".tar";
 	$filename = $tarname.".gz";
 	$archive_file_name = sys_get_temp_dir() ."/". $tarname;
 	$archive = new PharData($archive_file_name);

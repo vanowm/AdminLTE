@@ -977,6 +977,12 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "blocklists"
                                                                       ?>>Fahrenheit</label>
                                                     </div>
                                                 </div>
+                                                <h4>Timezone</h4>
+                                                <div class="form-group">
+                                                    <div class="dropdown">
+                                                        <select id="timezone"><option value="">Default</option></select>
+                                                    </div>
+                                                </div>
                                                 <h4>Administrator Email Address</h4>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" name="adminemail"
